@@ -1,13 +1,10 @@
 import { FC } from 'react'
 import AssignDispatchCard from '../Cards/AssignDispatchCard'
-interface Props{
-    onDone:()=>void
-}
 
-const AssignDispatchDriver:FC<Props> = ({onDone}) => {
+const AssignDispatchDriver:FC = () => {
     return (
         <div className="flex flex-col gap-y-2">
-            <div className="flex justify-between items-center gap-x-4">
+            <div className="flex justify-center md:justify-between md:items-center flex-wrap gap-2 md:gap-x-4 text-sm">
                 <div className="cursor-pointer border border-[#1f5bf44f] bg-[#1f5bf423] text-[#1F5AF4] p-1">All (300)</div>
                 <div className="cursor-pointer bg-[#827f9818] text-[#827F98] p-1">Yaba Riders (5)</div>
                 <div className="cursor-pointer bg-[#827f9818] text-[#827F98] p-1">Unassigned Riders (10)</div>

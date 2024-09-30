@@ -1,75 +1,37 @@
 'use client'
-import { useState } from 'react';
 import CustomTab from '../common/RadioButton';
-import SetDrugCircleContent from './SetDrugCircle';
+import SetDrugCycleContent from './SetDrugCycle';
 import AssignDispatchDriver from './AssignDispatchDriver';
 import ScanPackage from './ScanPackage';
+import { useResponsive } from '@/hooks/useResponsive';
+import { usePatient } from '@/hooks/usePatient';
 
 const AssignPackageTabs: React.FC = () => {
 
-    const [drugSelected,setDrugSelected] = useState(true)
-    const [assignSelected,setAssignSelected] = useState(false)
-    const [scanSelected,setScanSelected] = useState(false)
-
-    const [drugDone, setDrugDone] = useState(false);
-    const [assignDone, setAssignDone] = useState(false);
-    const [scanDone, setScanDone] = useState(false);
-
-    const handleDrugTab = ()=>{
-        setDrugSelected(true);
-        setAssignSelected(false);
-        setScanSelected(false);
-    }
-
-    const handleAssignTab = () => {
-        setDrugSelected(false);
-        setAssignSelected(true);
-        setScanSelected(false);
-    };
-
-    const handleScanTab = () => {
-
-        setDrugSelected(false);
-        setAssignSelected(false);
-        setScanSelected(true);
-    };
-
-    const handleSetDrugCircleDone = () => {
-        setDrugDone(true);
-        handleAssignTab()
-    };
-
-    const handleAssignDispatchDriverDone = () => {
-        setAssignDone(true);
-        handleScanTab()
-    };
-    const handleScanDone = () => {
-        setScanDone(true);
-    };
-
+    const { smallDevice } = useResponsive()
+    const { drugSelected, assignSelected, scanSelected, drugCycleDone, assignDone, scanDone, handleDrugTab, handleAssignTab, handleScanTab } = usePatient()
 
     // Render the appropriate content based on the selected tab
 
-    const renderProperContent =()=>{
-        if(drugSelected){
-            return <SetDrugCircleContent onDone={handleSetDrugCircleDone}/>
-        }else if(assignSelected){
-            return <AssignDispatchDriver onDone={handleAssignDispatchDriverDone}/>
-        } else if(scanSelected){
-            return <ScanPackage onDone={handleScanDone}/>
+    const renderProperContent = () => {
+        if (drugSelected) {
+            return <SetDrugCycleContent />
+        } else if (assignSelected) {
+            return <AssignDispatchDriver />
+        } else if (scanSelected) {
+            return <ScanPackage />
         } else {
-            return <SetDrugCircleContent onDone={handleSetDrugCircleDone}/>
+            return <SetDrugCycleContent />
         }
     }
 
 
     return (
         <div className="flex flex-col py-2">
-            {/* Render each tab independently */}
             <div className="w-full flex ">
-                <CustomTab label="Set Drug Cycle/Length" handleTab={handleDrugTab} isSelected={drugSelected} isCompleted={drugDone} />
-                <CustomTab label="Assign Dispatch Rider" handleTab={handleAssignTab} isSelected={assignSelected} isCompleted={assignDone} />
-                <CustomTab label="Scan Package" handleTab={handleScanTab} isSelected={scanSelected} isCompleted={scanDone} />
+                <CustomTab label={smallDevice ? "Drug" : "Set Drug Cycle/Length"} handleTab={handleDrugTab} isSelected={drugSelected} isCompleted={drugCycleDone} />
+                <CustomTab label={smallDevice ? "Assign" : "Assign Dispatch Rider"} handleTab={handleAssignTab} isSelected={assignSelected} isCompleted={assignDone} />
+                <CustomTab label={smallDevice ? "Scan" : "Scan Package"} handleTab={handleScanTab} isSelected={scanSelected} isCompleted={scanDone} />
             </div>
 
             <div className="mt-4">

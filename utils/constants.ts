@@ -3,10 +3,21 @@ import { ReactNode } from "react";
  * Custom input attributes
  */
 export interface CustomInuptProps {
-    name?: string;
-    type?: string;
-    placeholder?: string;
+    name: string;
+    type: string;
+    placeholder: string;
+    label:string;
+    showlabel: boolean;
+    disabled?:boolean;
 }
+export interface CustomSelectProps {
+    name: string;
+    label:string;
+    children:ReactNode;
+    showlabel: boolean;
+    disabled?:boolean;
+}
+
 
 /**
  * Login form values
@@ -63,11 +74,23 @@ export interface StatusColor {
 
 export interface Patient {
     hospitalId: string;
+    firstName:string;
+    lastName:string;
     name: string;
+    gender:string;
     phone: string;
+    email:string;
     nextDeliveryData: string;
     location: string;
     status: string;
+}
+
+export interface Delivery{
+    packageCode: string;
+    DeliveryDate: string;
+    patientName: string;
+    phone: string;
+    location: string;
 }
 
 
@@ -87,7 +110,11 @@ export interface ViewPatientTab {
 export const PatientsData: Patient[] = [
     {
         hospitalId: "1AFHFH093",
+        firstName:"Oluwaseun",
+        lastName:"Aregbesola",
         name: "Oluwaseun Aregbesola",
+        gender: "Male",
+        email: "seunregbesola@gmail.com",
         phone: "+2347068642920",
         nextDeliveryData: "12th September 2020",
         location: "VI, Lagos",
@@ -95,7 +122,11 @@ export const PatientsData: Patient[] = [
     },
     {
         hospitalId: "2AFHFH093",
-        name: "John Doe",
+        firstName:"Oluwaseun",
+        lastName:"Aregbesola",
+        name: "Oluwaseun Aregbesola",
+        gender: "Male",
+        email: "seunregbesola@gmail.com",
         phone: "123456789",
         nextDeliveryData: "12th September 2020",
         location: "VI, Lagos",
@@ -103,7 +134,11 @@ export const PatientsData: Patient[] = [
     },
     {
         hospitalId: "3AFHFH093",
-        name: "John Doe",
+        firstName:"Oluwaseun",
+        lastName:"Aregbesola",
+        name: "Oluwaseun Aregbesola",
+        gender: "Male",
+        email: "seunregbesola@gmail.com",
         phone: "123456789",
         nextDeliveryData: "12th September 2020",
         location: "VI, Lagos",
@@ -111,7 +146,11 @@ export const PatientsData: Patient[] = [
     },
     {
         hospitalId: "4AFHFH093",
-        name: "John Doe",
+        firstName:"Oluwaseun",
+        lastName:"Aregbesola",
+        name: "Oluwaseun Aregbesola",
+        gender: "Male",
+        email: "seunregbesola@gmail.com",
         phone: "123456789",
         nextDeliveryData: "12th September 2020",
         location: "VI, Lagos",
@@ -119,7 +158,11 @@ export const PatientsData: Patient[] = [
     },
     {
         hospitalId: "5AFHFH093",
-        name: "John Doe",
+        firstName:"Oluwaseun",
+        lastName:"Aregbesola",
+        name: "Oluwaseun Aregbesola",
+        gender: "Male",
+        email: "seunregbesola@gmail.com",
         phone: "123456789",
         nextDeliveryData: "12th September 2020",
         location: "VI, Lagos",
@@ -127,7 +170,11 @@ export const PatientsData: Patient[] = [
     },
     {
         hospitalId: "6AFHFH093",
-        name: "John Doe",
+        firstName:"Oluwaseun",
+        lastName:"Aregbesola",
+        name: "Oluwaseun Aregbesola",
+        gender: "Male",
+        email: "seunregbesola@gmail.com",
         phone: "123456789",
         nextDeliveryData: "12th September 2020",
         location: "VI, Lagos",
@@ -135,7 +182,11 @@ export const PatientsData: Patient[] = [
     },
     {
         hospitalId: "7AFHFH093",
-        name: "John Doe",
+        firstName:"Oluwaseun",
+        lastName:"Aregbesola",
+        name: "Oluwaseun Aregbesola",
+        gender: "Male",
+        email: "seunregbesola@gmail.com",
         phone: "123456789",
         nextDeliveryData: "12th September 2020",
         location: "VI, Lagos",
@@ -143,7 +194,11 @@ export const PatientsData: Patient[] = [
     },
     {
         hospitalId: "8AFHFH093",
-        name: "John Doe",
+        firstName:"Oluwaseun",
+        lastName:"Aregbesola",
+        name: "Oluwaseun Aregbesola",
+        gender: "Male",
+        email: "seunregbesola@gmail.com",
         phone: "123456789",
         nextDeliveryData: "12th September 2020",
         location: "VI, Lagos",
@@ -151,7 +206,11 @@ export const PatientsData: Patient[] = [
     },
     {
         hospitalId: "9AFHFH093",
-        name: "John Doe",
+        firstName:"Oluwaseun",
+        lastName:"Aregbesola",
+        name: "Oluwaseun Aregbesola",
+        gender: "Male",
+        email: "seunregbesola@gmail.com",
         phone: "123456789",
         nextDeliveryData: "12th September 2020",
         location: "VI, Lagos",
@@ -159,7 +218,11 @@ export const PatientsData: Patient[] = [
     },
     {
         hospitalId: "10AFHFH093",
-        name: "John Doe",
+        firstName:"Oluwaseun",
+        lastName:"Aregbesola",
+        name: "Oluwaseun Aregbesola",
+        gender: "Male",
+        email: "seunregbesola@gmail.com",
         phone: "123456789",
         nextDeliveryData: "12th September 2020",
         location: "VI, Lagos",
@@ -167,7 +230,11 @@ export const PatientsData: Patient[] = [
     },
     {
         hospitalId: "11AFHFH093",
-        name: "John Doe",
+        firstName:"Oluwaseun",
+        lastName:"Aregbesola",
+        name: "Oluwaseun Aregbesola",
+        gender: "Male",
+        email: "seunregbesola@gmail.com",
         phone: "123456789",
         nextDeliveryData: "12th September 2020",
         location: "VI, Lagos",
@@ -175,7 +242,11 @@ export const PatientsData: Patient[] = [
     },
     {
         hospitalId: "12AFHFH093",
-        name: "John Doe",
+        firstName:"Oluwaseun",
+        lastName:"Aregbesola",
+        name: "Oluwaseun Aregbesola",
+        gender: "Male",
+        email: "seunregbesola@gmail.com",
         phone: "123456789",
         nextDeliveryData: "12th September 2020",
         location: "VI, Lagos",
@@ -183,7 +254,11 @@ export const PatientsData: Patient[] = [
     },
     {
         hospitalId: "13AFHFH093",
-        name: "John Doe",
+        firstName:"Oluwaseun",
+        lastName:"Aregbesola",
+        name: "Oluwaseun Aregbesola",
+        gender: "Male",
+        email: "seunregbesola@gmail.com",
         phone: "123456789",
         nextDeliveryData: "12th September 2020",
         location: "VI, Lagos",
@@ -191,7 +266,11 @@ export const PatientsData: Patient[] = [
     },
     {
         hospitalId: "14AFHFH093",
-        name: "John Doe",
+        firstName:"Oluwaseun",
+        lastName:"Aregbesola",
+        name: "Oluwaseun Aregbesola",
+        gender: "Male",
+        email: "seunregbesola@gmail.com",
         phone: "123456789",
         nextDeliveryData: "12th September 2020",
         location: "VI, Lagos",
@@ -199,7 +278,11 @@ export const PatientsData: Patient[] = [
     },
     {
         hospitalId: "15AFHFH093",
-        name: "John Doe",
+        firstName:"Oluwaseun",
+        lastName:"Aregbesola",
+        name: "Oluwaseun Aregbesola",
+        gender: "Male",
+        email: "seunregbesola@gmail.com",
         phone: "123456789",
         nextDeliveryData: "12th September 2020",
         location: "VI, Lagos",
@@ -207,7 +290,11 @@ export const PatientsData: Patient[] = [
     },
     {
         hospitalId: "16AFHFH093",
-        name: "John Doe",
+        firstName:"Oluwaseun",
+        lastName:"Aregbesola",
+        name: "Oluwaseun Aregbesola",
+        gender: "Male",
+        email: "seunregbesola@gmail.com",
         phone: "123456789",
         nextDeliveryData: "12th September 2020",
         location: "VI, Lagos",
@@ -215,7 +302,11 @@ export const PatientsData: Patient[] = [
     },
     {
         hospitalId: "17AFHFH093",
-        name: "John Doe",
+        firstName:"Oluwaseun",
+        lastName:"Aregbesola",
+        name: "Oluwaseun Aregbesola",
+        gender: "Male",
+        email: "seunregbesola@gmail.com",
         phone: "123456789",
         nextDeliveryData: "12th September 2020",
         location: "VI, Lagos",
@@ -223,7 +314,11 @@ export const PatientsData: Patient[] = [
     },
     {
         hospitalId: "18AFHFH093",
-        name: "John Doe",
+        firstName:"Oluwaseun",
+        lastName:"Aregbesola",
+        name: "Oluwaseun Aregbesola",
+        gender: "Male",
+        email: "seunregbesola@gmail.com",
         phone: "123456789",
         nextDeliveryData: "12th September 2020",
         location: "VI, Lagos",
@@ -231,7 +326,11 @@ export const PatientsData: Patient[] = [
     },
     {
         hospitalId: "19AFHFH093",
-        name: "John Doe",
+        firstName:"Oluwaseun",
+        lastName:"Aregbesola",
+        name: "Oluwaseun Aregbesola",
+        gender: "Male",
+        email: "seunregbesola@gmail.com",
         phone: "123456789",
         nextDeliveryData: "12th September 2020",
         location: "VI, Lagos",
@@ -239,7 +338,11 @@ export const PatientsData: Patient[] = [
     },
     {
         hospitalId: "20AFHFH093",
-        name: "John Doe",
+        firstName:"Oluwaseun",
+        lastName:"Aregbesola",
+        name: "Oluwaseun Aregbesola",
+        gender: "Male",
+        email: "seunregbesola@gmail.com",
         phone: "123456789",
         nextDeliveryData: "12th September 2020",
         location: "VI, Lagos",
@@ -247,7 +350,11 @@ export const PatientsData: Patient[] = [
     },
     {
         hospitalId: "21AFHFH093",
-        name: "John Doe",
+        firstName:"Oluwaseun",
+        lastName:"Aregbesola",
+        name: "Oluwaseun Aregbesola",
+        gender: "Male",
+        email: "seunregbesola@gmail.com",
         phone: "123456789",
         nextDeliveryData: "12th September 2020",
         location: "VI, Lagos",
@@ -255,7 +362,11 @@ export const PatientsData: Patient[] = [
     },
     {
         hospitalId: "22AFHFH093",
-        name: "John Doe",
+        firstName:"Oluwaseun",
+        lastName:"Aregbesola",
+        name: "Oluwaseun Aregbesola",
+        gender: "Male",
+        email: "seunregbesola@gmail.com",
         phone: "123456789",
         nextDeliveryData: "12th September 2020",
         location: "VI, Lagos",
@@ -263,7 +374,11 @@ export const PatientsData: Patient[] = [
     },
     {
         hospitalId: "23AFHFH093",
-        name: "John Doe",
+        firstName:"Oluwaseun",
+        lastName:"Aregbesola",
+        name: "Oluwaseun Aregbesola",
+        gender: "Male",
+        email: "seunregbesola@gmail.com",
         phone: "123456789",
         nextDeliveryData: "12th September 2020",
         location: "VI, Lagos",
@@ -271,7 +386,11 @@ export const PatientsData: Patient[] = [
     },
     {
         hospitalId: "24AFHFH093",
-        name: "John Doe",
+        firstName:"Oluwaseun",
+        lastName:"Aregbesola",
+        name: "Oluwaseun Aregbesola",
+        gender: "Male",
+        email: "seunregbesola@gmail.com",
         phone: "123456789",
         nextDeliveryData: "12th September 2020",
         location: "VI, Lagos",
@@ -279,11 +398,197 @@ export const PatientsData: Patient[] = [
     },
     {
         hospitalId: "25AFHFH093",
-        name: "John Doe",
+        firstName:"Oluwaseun",
+        lastName:"Aregbesola",
+        name: "Oluwaseun Aregbesola",
+        gender: "Male",
+        email: "seunregbesola@gmail.com",
         phone: "123456789",
         nextDeliveryData: "12th September 2020",
         location: "VI, Lagos",
         status: "Due & Unpaid"
+    }
+]
+
+/**
+ *  DELIVERY DATA
+ */
+
+export const DeliveryData:Delivery[]=[
+    {
+        packageCode: "1AFHFH093",
+        patientName: "Oluwaseun Aregbesola",
+        phone: "+2347068642920",
+        DeliveryDate: "12th September 2020",
+        location: "VI, Lagos"
+    },
+    {
+        packageCode: "2AFHFH093",
+        patientName: "John Doe",
+        phone: "123456789",
+        DeliveryDate: "12th September 2020",
+        location: "VI, Lagos"
+    },
+    {
+        packageCode: "3AFHFH093",
+        patientName: "John Doe",
+        phone: "123456789",
+        DeliveryDate: "12th September 2020",
+        location: "VI, Lagos"
+    },
+    {
+        packageCode: "4AFHFH093",
+        patientName: "John Doe",
+        phone: "123456789",
+        DeliveryDate: "12th September 2020",
+        location: "VI, Lagos"
+    },
+    {
+        packageCode: "5AFHFH093",
+        patientName: "John Doe",
+        phone: "123456789",
+        DeliveryDate: "12th September 2020",
+        location: "VI, Lagos"
+    },
+    {
+        packageCode: "6AFHFH093",
+        patientName: "John Doe",
+        phone: "123456789",
+        DeliveryDate: "12th September 2020",
+        location: "VI, Lagos"
+    },
+    {
+        packageCode: "7AFHFH093",
+        patientName: "John Doe",
+        phone: "123456789",
+        DeliveryDate: "12th September 2020",
+        location: "VI, Lagos"
+    },
+    {
+        packageCode: "8AFHFH093",
+        patientName: "John Doe",
+        phone: "123456789",
+        DeliveryDate: "12th September 2020",
+        location: "VI, Lagos"
+    },
+    {
+        packageCode: "9AFHFH093",
+        patientName: "John Doe",
+        phone: "123456789",
+        DeliveryDate: "12th September 2020",
+        location: "VI, Lagos"
+    },
+    {
+        packageCode: "10AFHFH093",
+        patientName: "John Doe",
+        phone: "123456789",
+        DeliveryDate: "12th September 2020",
+        location: "VI, Lagos"
+    },
+    {
+        packageCode: "11AFHFH093",
+        patientName: "John Doe",
+        phone: "123456789",
+        DeliveryDate: "12th September 2020",
+        location: "VI, Lagos"
+    },
+    {
+        packageCode: "12AFHFH093",
+        patientName: "John Doe",
+        phone: "123456789",
+        DeliveryDate: "12th September 2020",
+        location: "VI, Lagos"
+    },
+    {
+        packageCode: "13AFHFH093",
+        patientName: "John Doe",
+        phone: "123456789",
+        DeliveryDate: "12th September 2020",
+        location: "VI, Lagos"
+    },
+    {
+        packageCode: "14AFHFH093",
+        patientName: "John Doe",
+        phone: "123456789",
+        DeliveryDate: "12th September 2020",
+        location: "VI, Lagos"
+    },
+    {
+        packageCode: "15AFHFH093",
+        patientName: "John Doe",
+        phone: "123456789",
+        DeliveryDate: "12th September 2020",
+        location: "VI, Lagos"
+    },
+    {
+        packageCode: "16AFHFH093",
+        patientName: "John Doe",
+        phone: "123456789",
+        DeliveryDate: "12th September 2020",
+        location: "VI, Lagos"
+    },
+    {
+        packageCode: "17AFHFH093",
+        patientName: "John Doe",
+        phone: "123456789",
+        DeliveryDate: "12th September 2020",
+        location: "VI, Lagos"
+    },
+    {
+        packageCode: "18AFHFH093",
+        patientName: "John Doe",
+        phone: "123456789",
+        DeliveryDate: "12th September 2020",
+        location: "VI, Lagos"
+    },
+    {
+        packageCode: "19AFHFH093",
+        patientName: "John Doe",
+        phone: "123456789",
+        DeliveryDate: "12th September 2020",
+        location: "VI, Lagos"
+    },
+    {
+        packageCode: "20AFHFH093",
+        patientName: "John Doe",
+        phone: "123456789",
+        DeliveryDate: "12th September 2020",
+        location: "VI, Lagos"
+    },
+    {
+        packageCode: "21AFHFH093",
+        patientName: "John Doe",
+        phone: "123456789",
+        DeliveryDate: "12th September 2020",
+        location: "VI, Lagos"
+    },
+    {
+        packageCode: "22AFHFH093",
+        patientName: "John Doe",
+        phone: "123456789",
+        DeliveryDate: "12th September 2020",
+        location: "VI, Lagos"
+    },
+    {
+        packageCode: "23AFHFH093",
+        patientName: "John Doe",
+        phone: "123456789",
+        DeliveryDate: "12th September 2020",
+        location: "VI, Lagos"
+    },
+    {
+        packageCode: "24AFHFH093",
+        patientName: "John Doe",
+        phone: "123456789",
+        DeliveryDate: "12th September 2020",
+        location: "VI, Lagos",
+    },
+    {
+        packageCode: "25AFHFH093",
+        patientName: "John Doe",
+        phone: "123456789",
+        DeliveryDate: "12th September 2020",
+        location: "VI, Lagos"
     }
 ]
 
@@ -340,6 +645,26 @@ export const ViewPatientSideBarTabs: ViewPatientTab[] = [
 ]
 
 /**
+ *  View Patient Tabs
+ *  Small devices
+ */
+
+export const ViewPatientSideBarTabsSmallDevices: ViewPatientTab[] = [
+    {
+        id: 1,
+        label: "Patient"
+    },
+    {
+        id: 2,
+        label: "Rider"
+    },
+    {
+        id: 3,
+        label: "Delivery"
+    }
+]
+
+/**
  *  Driver profile tabs
  */
 
@@ -356,7 +681,24 @@ export const DriverProfileTabs: ViewPatientTab[] = [
 ]
 
 /**
- *  SET DRUG CIRCLE DATA DEFINITION
+ *  Driver profile tabs
+ *  Small devices
+ */
+
+
+export const DriverProfileTabsSmallDevices: ViewPatientTab[] = [
+    {
+        id: 1,
+        label: "Patient"
+    },
+    {
+        id: 2,
+        label: "Delivery"
+    }
+]
+
+/**
+ *  SET DRUG CYCLE DATA DEFINITION
  */
 
 export interface DrugCircleData {
@@ -366,7 +708,7 @@ export interface DrugCircleData {
 }
 
 /** 
- *  SET DRUG CIRCLE DATA
+ *  SET DRUG CYCLE DATA
 */
 
 export const drugCircleData: DrugCircleData[] = [
@@ -411,3 +753,73 @@ export const drugCircleData: DrugCircleData[] = [
         content: "Deliver drug on 4th February 2020 & set next delivery date to 4th March 2020"
     }
 ]
+
+/**
+ *   DLIVERIES TABS DEFINITION
+ */
+
+export interface DeliveryTab {
+    id:number;
+    label: string
+    value?: number
+}
+
+/**
+ *   UNIASSIGNED DLIVERIES
+ */
+
+export const unassignedDeliveries: DeliveryTab[] = [
+    {   
+        id:1,
+        label: "Paid",
+        value: 12
+    },
+    {
+        id:2,
+        label: "Unpaid",
+        value: 8
+    },
+]
+
+/**
+ *   UNIASSIGNED DLIVERIES
+ */
+
+export const AssignedDeliveries: DeliveryTab[] = [
+    {   
+        id:1,
+        label: "Pending"
+    },
+    {
+        id:2,
+        label: "Successful"
+    },
+    {
+        id:3,
+        label: "Failed",
+        value: 12
+    },
+
+]
+
+/**
+ *   ID PARAMS TYPE DEFINITION
+ */
+
+
+type ParamsType = {
+    patientId: string
+}
+export interface IDProp {
+    params: ParamsType
+}
+
+/** 
+ *   BreadsCrumbs path definition
+*/
+
+export interface BreadcrumbsPath {
+    id:number;
+    path: string
+    label: string
+}

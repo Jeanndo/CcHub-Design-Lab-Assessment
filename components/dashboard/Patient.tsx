@@ -3,7 +3,7 @@ import {FC} from 'react'
 const Patient:FC = () => {
     return (
         <div>
-            patient
+            Patient Tab to be implemented
         </div>
     )
 }
