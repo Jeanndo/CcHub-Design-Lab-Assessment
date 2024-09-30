@@ -2,7 +2,7 @@ import React from 'react'
 
 const DeliveryHistory = () => {
     return (
-        <div>DeliveryHistory</div>
+        <div>DeliveryHistory to be implemented</div>
     )
 }
 

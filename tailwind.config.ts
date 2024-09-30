@@ -12,6 +12,15 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      keyframes: {
+        scanline: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(100%)' },
+        },
+      },
+      animation: {
+        scanline: 'scanline 3s ease-in-out infinite',
+      },
     },
   },
   plugins: [],
