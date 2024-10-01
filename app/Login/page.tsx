@@ -10,7 +10,7 @@ const Login: FC = () => {
         <div className="w-full 2xl:max-w-screen-xl m-0 2xl:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1 overflow-hidden">
           <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12 relative">
             <div className="flex flex-col justify-center items-center">
-              <Image src="/assets/images/logo.svg" width={50} height={50} alt="logo" />
+              <Image src="/assets/images/Logo.svg" width={50} height={50} alt="logo" />
             </div>
             <div className="mt-2 flex flex-col items-center">
               <div className="w-full flex-1">
