@@ -1,6 +1,5 @@
 import { FC } from 'react'
 import { DashboardLayoutProps } from '@/utils/constants';
-// import ContentHeader from '@/components/dashboard/ContentHeader';
 import Header from '@/components/dashboard/Hearder';
 import AppContextProvider from '@/context/providers/AppContextProvider';
 
