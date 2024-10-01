@@ -25,3 +25,18 @@ body {
     text-wrap: balance;
   }
 }
+
+.custom-toast {
+  background-color: #44B07E !important; 
+  color: white !important; 
+  width: 100% !important; 
+  border-radius: 0 !important; 
+}
+.Toastify__toast-container {
+  width: 100% !important; 
+  padding: 0 !important;  
+}
+.Toastify__toast {
+  width: 100% !important; 
+  margin: 0 !important;   
+}

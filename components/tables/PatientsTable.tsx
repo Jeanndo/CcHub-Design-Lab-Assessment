@@ -1,13 +1,17 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
 'use client'
 import {FC} from 'react'
 import PatientStatusLable from '../common/PatientStatusLable'
 import { useRouter } from 'next/navigation'
-import { usePatient } from '@/hooks/usePatient'
+import { Patient } from '@/utils/constants'
 
-const PatientsTable:FC = () => {
+type PatientData ={
+    data:Patient
+}
+const PatientsTable:FC<PatientData> = ({data}) => {
 
     const router =  useRouter()
-    const {patients} = usePatient()
 
     const handleViewPatient = (id:string)=>{
         router.push(`/dashboard/patients/${id}`)
@@ -28,7 +32,7 @@ const PatientsTable:FC = () => {
                 </tr>
             </thead>
             <tbody className="text-[#2a2a2aad]">
-                {patients.map((patient)=>(
+                {data?.map((patient)=>(
                     <tr className="h-[91px] border-b border-[#262626] border-opacity-10" key={patient.hospitalId}>
                     <td>{patient.hospitalId}</td>
                     <td>{patient.name}</td>

@@ -1,58 +1,53 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
 'use client'
-import React, { Fragment, useState } from 'react';
+import { Patient } from '@/utils/constants';
+import React, { FC, useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 
-// Example items, to simulate fetching from another resources.
-const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,15,16,17,18,19,20,21,22,23,24,25,26,27,28];
+type PatientsData = {
+    patients: Patient,
+    setCurrentItems: React.Dispatch<React.SetStateAction<Patient[]>>
+};
 
-function Items({ currentItems }:number[]) {
 
-    return (
-        <>
-            {currentItems &&
-                currentItems.map((item, index) => (
-                    <div key={index}>
-                        <h3>Item #{item}</h3>
-                    </div>
-                ))}
-        </>
-    );
-}
+const Pagination: FC<PatientsData> = ({ patients, setCurrentItems }) => {
+    
+    const itemsPerPage = 10;
+    const [pageCount, setPageCount] = useState<number>(0);
+    const [itemOffset, setItemOffset] = useState<number>(0);
 
-const Pagination = ({ itemsPerPage }) => {
+    useEffect(() => {
 
-    // Here we use item offsets; we could also use page offsets
-    // following the API or data you're working with.
-    const [itemOffset, setItemOffset] = useState(0);
+        const endOffset = itemOffset + itemsPerPage;
+        setCurrentItems(patients?.slice(itemOffset, endOffset));
+        setPageCount(Math.ceil(patients?.length / itemsPerPage));
+    }, [itemOffset, itemsPerPage, patients, setCurrentItems]);
 
-    // Simulate fetching items from another resources.
-    // (This could be items from props; or items loaded in a local state
-    // from an API endpoint with useEffect and useState)
-    const endOffset = itemOffset + itemsPerPage;
-    console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-    const currentItems = items.slice(itemOffset, endOffset);
-    const pageCount = Math.ceil(items.length / itemsPerPage);
 
-    // Invoke when user click to request another page.
-    const handlePageClick = (event) => {
-        const newOffset = (event.selected * itemsPerPage) % items.length;
-        console.log(
-            `User requested page number ${event.selected}, which is offset ${newOffset}`
-        );
+    const handlePageClick = (event: { selected: number }) => {
+        const newOffset = (event.selected * itemsPerPage) % patients?.length;
         setItemOffset(newOffset);
     };
 
     return (
-        <div className="bg-green-700">
-            <Items currentItems={currentItems} />
+        <div className="flex flex-col-reverse gap-y-2 md:flex-row md:justify-between items-center ">
+            <div className="text-[#262626] text-opacity-60">You’re viewing {itemsPerPage} out of {patients?.length} deliveries</div>
             <ReactPaginate
                 breakLabel="..."
-                nextLabel="next >"
+                nextLabel="Next"
                 onPageChange={handlePageClick}
-                pageRangeDisplayed={5}
+                pageRangeDisplayed={3}
                 pageCount={pageCount}
-                previousLabel="< previous"
-                renderOnZeroPageCount={null}
+                previousLabel="Previous"
+                containerClassName="flex justify-center items-center space-x-2 mt-6"
+                pageClassName="page-item"
+                pageLinkClassName="px-3 py-2 text-gray-700 "
+                previousLinkClassName="px-3 py-2 border border-gray-500 rounded-full text-gray-700 hover:bg-gray-100"
+                nextLinkClassName="px-3 py-2 border border-gray-300 rounded-full text-gray-700 hover:bg-gray-100"
+                breakLinkClassName="px-3 py-2 border border-gray-300 rounded-md text-gray-700"
+                activeClassName="border border-gray-500 text-white rounded-full h-9 w-9 flex justifty-center items-center"
+                disabledClassName="opacity-50 cursor-not-allowed"
             />
         </div>
     )

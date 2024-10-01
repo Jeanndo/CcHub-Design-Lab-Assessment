@@ -25,6 +25,12 @@ interface PatientContextType {
     handleSetDrugCycleDone:()=>void;
     handleAssignDispatchDriverDone:()=>void;
     handleScanDone:()=>void;
+    qrCode:string;
+    setQrCode:(value:string)=>void;
+    handleGetQrCode:(value:string)=>void;
+    handleCleanQrCode:()=>void;
+    isScanning:boolean;
+    setIsScanning:(value:boolean)=>void;
 
 }
 

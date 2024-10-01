@@ -18,6 +18,8 @@ const PatientProvider = ({children}:PatientProviderProp)=>{
     const [drugCycleDone,setDrugCyleDone] = useState<boolean>(false)
     const [assignDone, setAssignDone] = useState(false);
     const [scanDone, setScanDone] = useState(false);
+    const [qrCode,setQrCode] = useState<string>("")
+    const [isScanning,setIsScanning] = useState<boolean>(false)
     
 
     useEffect(()=>{
@@ -26,6 +28,15 @@ const PatientProvider = ({children}:PatientProviderProp)=>{
         }
         getPatients()
     },[])
+
+    useEffect(()=>{
+        if(qrCode!==""){
+            handleScanDone()
+        }else{
+            return
+        }
+        
+    },[qrCode])
 
     const getPatient = (id:string)=>{
 
@@ -66,6 +77,15 @@ const PatientProvider = ({children}:PatientProviderProp)=>{
         setScanDone(true);
     };
 
+    const handleCleanQrCode =()=>{
+        setQrCode("")
+        setScanDone(false);
+    }
+
+    const handleGetQrCode=(qrCode:string)=>{
+        setQrCode(qrCode)
+    }
+
     return (
         <PatientContext.Provider value={{
             patients,
@@ -89,7 +109,13 @@ const PatientProvider = ({children}:PatientProviderProp)=>{
             handleScanTab,
             handleSetDrugCycleDone,
             handleAssignDispatchDriverDone,
-            handleScanDone
+            handleScanDone,
+            qrCode,
+            setQrCode,
+            handleCleanQrCode,
+            isScanning,
+            setIsScanning,
+            handleGetQrCode
             }}
             >
             {children}
