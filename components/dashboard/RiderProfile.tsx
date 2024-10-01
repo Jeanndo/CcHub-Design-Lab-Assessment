@@ -1,14 +1,35 @@
 'use client'
-import { DriverProfileTabs, DriverProfileTabsSmallDevices } from '@/utils/constants'
-import { FC, useState } from 'react'
+import { DriverProfileTabs, DriverProfileTabsSmallDevices, Patient } from '@/utils/constants'
+import { FC, useEffect, useState } from 'react'
 import PatientInfoForm from '../forms/PatientInfoForm'
 import DeliveryInfoForm from '../forms/DeliveryInfoForm'
 import { useResponsive } from '@/hooks/useResponsive'
+import { usePatient } from '@/hooks/usePatient'
 
 const RiderProfile: FC = () => {
-
+    
+    const { patientId, getPatient } = usePatient()
     const { smallDevice } = useResponsive()
     const [tabIndex, setTabIndex] = useState<number>(0)
+    const [patientInfo, setPatientInfo] = useState<Patient | undefined>({
+            hospitalId: "",
+            firstName: "",
+            lastName: "",
+            name: "",
+            gender: "",
+            phone: "",
+            email: "",
+            nextDeliveryData: "",
+            location: "",
+            status: ""
+    })
+
+    useEffect(() => {
+        const getPatientData = getPatient(patientId)
+        setPatientInfo(getPatientData)
+    }, [patientId, getPatient])
+
+
 
     // get the tab index
     const handleTabClick = (index: number) => {
@@ -29,9 +50,9 @@ const RiderProfile: FC = () => {
         <div className="w-full flex flex-col py-4 px-4">
 
             <div className="flex justify-between items-center gap-4 md:gap-x-10">
-                <div className="flex flex-col justify-normal md:flex-row md:justify-start md:items-center gap-x-4 w-1/3"><span>{smallDevice? "Status":"Payment status"}</span><button style={{
+                <div className="flex flex-col justify-normal md:flex-row md:justify-start md:items-center gap-x-4 w-1/3"><span>{smallDevice ? "Status" : "Payment status"}</span><button style={{
                     background: "rgba(1, 168, 90, 0.2)"
-                }} className={smallDevice?"py-1 px-2 text-[#01A85A]":"py-2 px-4 text-[#01A85A]"}>Paid</button>
+                }} className={smallDevice ? "py-1 px-2 text-[#01A85A]" : "py-2 px-4 text-[#01A85A]"}>{patientInfo?.status}</button>
                 </div>
 
                 {smallDevice ? (

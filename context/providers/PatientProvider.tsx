@@ -20,6 +20,7 @@ const PatientProvider = ({children}:PatientProviderProp)=>{
     const [scanDone, setScanDone] = useState(false);
     const [qrCode,setQrCode] = useState<string>("")
     const [isScanning,setIsScanning] = useState<boolean>(false)
+    const [editPatientInfo,setEditPatientInfo] = useState<boolean>(false)
     
 
     useEffect(()=>{
@@ -115,7 +116,9 @@ const PatientProvider = ({children}:PatientProviderProp)=>{
             handleCleanQrCode,
             isScanning,
             setIsScanning,
-            handleGetQrCode
+            handleGetQrCode,
+            editPatientInfo,
+            setEditPatientInfo
             }}
             >
             {children}
