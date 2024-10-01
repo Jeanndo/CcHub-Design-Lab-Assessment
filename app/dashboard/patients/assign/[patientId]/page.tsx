@@ -9,7 +9,7 @@ import { usePatient } from '@/hooks/usePatient'
 
 const AssignPackage: FC<IDProp> = ({ params }) => {
 
-    const { drugSelected, assignSelected, scanSelected, scanDone, handleSetDrugCycleDone, handleAssignDispatchDriverDone, handleScanDone } = usePatient()
+    const { drugSelected, assignSelected, scanSelected, scanDone,handleDrugTab, handleSetDrugCycleDone, handleAssignDispatchDriverDone} = usePatient()
 
     const [open, setOpen] = useState(false)
 
@@ -47,9 +47,7 @@ const AssignPackage: FC<IDProp> = ({ params }) => {
             return <button onClick={handleSetDrugCycleDone} className="py-3 px-5 bg-[#1F5AF4] text-white">Next</button>
         } else if (assignSelected) {
             return <button onClick={handleAssignDispatchDriverDone} className="py-3 px-5 bg-[#1F5AF4] text-white">Next</button>
-        } else if (scanSelected) {
-            return <button onClick={handleScanDone} className="py-3 px-5 bg-[#1F5AF4] text-white">Next</button>
-        }
+        } 
     }
 
 
@@ -57,8 +55,8 @@ const AssignPackage: FC<IDProp> = ({ params }) => {
     return (
         <Fragment>
             <AssignPackageModal open={open} handleClose={handleClose} />
-            <div className='w-full h-20 flex justify-between items-center max-w-6xl mx-auto my-auto  border-b border-[#CFCFCF]'>
-                <div className="text-[#2A2A2A]"><BreadScrumbs pathArray={paths} /></div>
+            <div className='w-full h-20 flex justify-center md:justify-between items-center max-w-6xl mx-auto my-auto  border-b border-[#CFCFCF]'>
+                <div className="text-[#2A2A2A] hidden md:block"><BreadScrumbs pathArray={paths} /></div>
                 <div className="flex justify-center items-center gap-4">
                     <button className="px-8 py-2 bg-[#1F5AF4] text-white font-semibold flex justify-center items-center gap-x-2"><FaPlus className='text-white font-bold' />Add Patient</button>
                 </div>
@@ -77,16 +75,16 @@ const AssignPackage: FC<IDProp> = ({ params }) => {
                     </div>
                 </div>
                 <div className="bg-white h-max w-full">
-                    <div className="w-full  p-4 border-b border-[#EFEFEF]">
+                    <div className="w-full  p-4">
                         <AssignPackageTabs />
                     </div>
-                    {!scanDone && <div className="flex justify-end my-2 p-4">
+                    {!scanSelected && <div className="flex justify-end my-2 p-4 shadow-top bg-white border-t border-[#EFEFEF]">
                         {retunProperNextButton()}
 
                     </div>}
-                    {scanDone && <div className="flex justify-between items-center p-4">
-                        <button className="py-3 px-8 border border-[#276DF7] text-[#276DF7] font-semibold">Back</button>
-                        <button onClick={handleOpenModal} className="py-3 px-5 bg-[#1F5AF4] text-white">Assign Package</button>
+                    {scanSelected && <div className="flex justify-between items-center p-4 shadow-top bg-white border-t border-[#EFEFEF]">
+                        <button onClick={handleDrugTab}  className="py-3 px-8 border border-[#276DF7] text-[#276DF7] font-semibold">Back</button>
+                        <button disabled={!scanDone} onClick={handleOpenModal} className={`py-3 px-5 bg-[#1F5AF4] ${!scanDone?"bg-opacity-40":""} text-white`}>Assign Package</button>
                     </div>}
                 </div>
             </div>

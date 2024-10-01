@@ -4,7 +4,8 @@ import { DeliveryData} from '@/utils/constants'
 const DeliveriesTable:FC = () => {
 
     return (
-        <table className="table-auto w-full  text-left">
+        <div className="overflow-x-auto">
+        <table className="whitespace-nowrap w-full text-left">
             <thead className="h-[91px] font-normal text-[#2a2a2a93] border-b border-[#262626] border-opacity-10">
                 <tr>
                     <th>Package Code</th>
@@ -28,6 +29,7 @@ const DeliveriesTable:FC = () => {
                 ))}
             </tbody>
         </table>
+        </div>
     )
 }
 

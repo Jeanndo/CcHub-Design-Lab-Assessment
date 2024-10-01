@@ -1,17 +1,20 @@
+'use -client'
 import { useEffect, useRef, useState } from 'react';
 import { Html5QrcodeScanner } from 'html5-qrcode';
-
+import { usePatient } from '@/hooks/usePatient';
 interface QRCodeScannerProps {
     startScan: boolean;
-    setCode: React.Dispatch<React.SetStateAction<string>>
 }
 
-const QRCodeScanner: React.FC<QRCodeScannerProps> = ({ startScan, setCode }) => {
+const QRCodeScanner: React.FC<QRCodeScannerProps> = ({ startScan}) => {
+
+    const {handleGetQrCode,setIsScanning} = usePatient()
     const [scanResult, setScanResult] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
     const scannerRef = useRef<Html5QrcodeScanner | null>(null);
 
     useEffect(() => {
+
         if (startScan && !scannerRef.current) {
             scannerRef.current = new Html5QrcodeScanner(
                 'qr-reader',
@@ -20,15 +23,21 @@ const QRCodeScanner: React.FC<QRCodeScannerProps> = ({ startScan, setCode }) => 
             );
 
             const handleScanSuccess = (decodedText: string) => {
-                console.log('QR Code scanned: ', decodedText);
-                setScanResult(decodedText);
-                setCode(decodedText)
-                stopScanning();
+                setIsScanning(true)
+                setTimeout(()=>{
+                    setIsScanning(false)
+                    setScanResult(decodedText);
+                    handleGetQrCode(decodedText)
+                    stopScanning();
+                },5000)
+                
+                
             };
 
             const handleScanError = (err: unknown) => {
                 console.warn('QR code scan failed: ', err);
                 setError('Issue with reading,Please try again.');
+                setIsScanning(false)
             };
 
             // Start scanning
@@ -36,6 +45,7 @@ const QRCodeScanner: React.FC<QRCodeScannerProps> = ({ startScan, setCode }) => 
         }
 
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [startScan]);
 
 
@@ -50,10 +60,9 @@ const QRCodeScanner: React.FC<QRCodeScannerProps> = ({ startScan, setCode }) => 
         }
     };
 
+    console.log(error)
     return (
         <div className="flex flex-col items-center justify-center">
-            <h2 className="text-xl font-bold mb-4">QR Code Scanner</h2>
-            {error && <p className="text-red-500">{error}</p>}
             {scanResult ? (
                 <p className="text-green-500">Scanned Result: {scanResult}</p>
             ) : (

@@ -1,12 +1,19 @@
-import { FC, Fragment } from 'react'
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
+'use client'
+import { FC, Fragment, useState } from 'react'
 import PatientsTable from '@/components/tables/PatientsTable'
 import SortAndSearch from '@/components/dashboard/PatientSortAndSearch'
 import BreadScrumbs from '@/components/dashboard/BreadScrumbs'
 import { FaPlus } from 'react-icons/fa6'
-import { BreadcrumbsPath } from '@/utils/constants'
-// import Pagination from '@/components/dashboard/Pagination'
+import { BreadcrumbsPath, Patient } from '@/utils/constants'
+import Pagination from '@/components/dashboard/Pagination'
+import { usePatient } from '@/hooks/usePatient'
 
 const PatientsPage: FC = () => {
+
+    const {patients} = usePatient()
+    const [currentItems, setCurrentItems] = useState<Patient[]>([]);
 
     const paths:BreadcrumbsPath[] =[
         {
@@ -26,8 +33,8 @@ const PatientsPage: FC = () => {
             </div>
             <SortAndSearch />
             <div className="w-full bg-white px-[46px] py-[31px]">
-                <PatientsTable />
-                {/* <Pagination itemsPerPage={10}/> */}
+                <PatientsTable data={currentItems}/>
+                <Pagination patients={patients} setCurrentItems={setCurrentItems}/>
             </div>
         </Fragment>
     )

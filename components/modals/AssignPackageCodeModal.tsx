@@ -1,7 +1,9 @@
 'use client'
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
-import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
+import { usePatient } from '@/hooks/usePatient';
+import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 interface AssignPackageModalProps {
     open: boolean;
@@ -9,6 +11,20 @@ interface AssignPackageModalProps {
 
 }
 const AssignPackageModal:FC<AssignPackageModalProps> =({open,handleClose})=>{
+
+    const {qrCode} = usePatient()
+    const router = useRouter()
+
+    const handleAssignPackageCode = ()=>{
+        router.push("/dashboard/deliveries")
+        toast.success("Package has been successfully assigned to Oluwaseun Aregbesola",
+            {
+                className: 'custom-toast',
+                bodyClassName: 'custom-toast-body',
+                position: 'top-center',
+            }
+        )
+    }
 
     return (
         <Dialog open={open} onClose={handleClose} className="relative z-10">
@@ -28,13 +44,13 @@ const AssignPackageModal:FC<AssignPackageModalProps> =({open,handleClose})=>{
                                 <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                                     <div className="border-b border-[#EEEEEE] py-4">
                                     <DialogTitle as="h3" className="text-base font-semibold leading-6 text-gray-900">
-                                        Assign Package 5673AD 
+                                        Assign Package {qrCode}
                                     </DialogTitle>
                                     </div>
                                     <div className="mt-2 p-8">
                                         <p className="text-sm text-gray-500">
                                         Are you sure you want to assign
-                                        package <span className="font-semibold">5673AD</span> to <span className="font-semibold">Oluwaseun Aregbesola</span>? 
+                                        package <span className="font-semibold">{qrCode}</span> to <span className="font-semibold">Oluwaseun Aregbesola</span>? 
                                         </p>
                                     </div>
                                 </div>
@@ -51,7 +67,7 @@ const AssignPackageModal:FC<AssignPackageModalProps> =({open,handleClose})=>{
                             <button
                                 type="button"
                                 data-autofocus
-                                onClick={handleClose}
+                                onClick={handleAssignPackageCode}
                                 className="mt-3 inline-flex w-full justify-center  bg-[#1F5AF4] px-4 py-3 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300  sm:mt-0 sm:w-auto"
                             >
                                 Yes, Assign Package
