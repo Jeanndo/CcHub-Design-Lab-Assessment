@@ -12,12 +12,12 @@ const PatientProvider = ({children}:PatientProviderProp)=>{
 
     const [patients,setPatients] = useState<Patient[]>([])
     const [patientId,setPatientId] = useState<string>("")
-    const [drugSelected,setDrugSelected] = useState(true)
-    const [assignSelected,setAssignSelected] = useState(false)
-    const [scanSelected,setScanSelected] = useState(false)
+    const [drugSelected,setDrugSelected] = useState<boolean>(true)
+    const [assignSelected,setAssignSelected] = useState<boolean>(false)
+    const [scanSelected,setScanSelected] = useState<boolean>(false)
     const [drugCycleDone,setDrugCyleDone] = useState<boolean>(false)
-    const [assignDone, setAssignDone] = useState(false);
-    const [scanDone, setScanDone] = useState(false);
+    const [assignDone, setAssignDone] = useState<boolean>(false);
+    const [scanDone, setScanDone] = useState<boolean>(false);
     const [qrCode,setQrCode] = useState<string>("")
     const [isScanning,setIsScanning] = useState<boolean>(false)
     const [editPatientInfo,setEditPatientInfo] = useState<boolean>(false)

@@ -11,7 +11,9 @@ const Deliveriespage = () => {
     {
       id: 1,
       label: 'Deliveries',
-      path: '/dashboard/deliveries'
+      path: '/dashboard/deliveries',
+      color:"#276DF7",
+      showColor:false
     },
   ]
 
