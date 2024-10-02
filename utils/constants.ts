@@ -820,6 +820,8 @@ export interface IDProp {
 
 export interface BreadcrumbsPath {
     id:number;
-    path: string
-    label: string
+    path: string;
+    label: string;
+    color:string;
+    showColor:boolean;
 }

@@ -2,9 +2,87 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+
+  @font-face {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url(/app/fonts/Gilroy-Light.ttf) format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(/app/fonts/Gilroy-Regular.ttf) format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url(/app/fonts/Gilroy-Medium.ttf) format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(/app/fonts/Gilroy-Bold.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Gilroy';
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+    src: url(/app/fonts/Gilroy-Heavy.ttf) format('truetype');
+  }
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+}
+
+/* @font-face {
+  font-family: 'Gilroy';
+  src: url("/fonts/Gilory/Gilory-Light.ttf") format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url("/fonts/Gilory/Gilory-Regular.ttf") format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src:url("/fonts/Gilroy-Medium.ttf") format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src:url("/fonts/Gilroy-Bold.ttf") format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Gilroy';
+  src:url("/fonts/Gilroy-Heavy.ttf") format('truetype');
+  font-weight: 900;
+  font-style: normal;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -12,12 +90,13 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  /* color: var(--foreground);
+  background: var(--background); */
+  font-family: 'Gilroy', sans-serif;
+  @apply font-gilroy;
 }
 
 @layer utilities {

@@ -25,17 +25,23 @@ const AssignPackage: FC<IDProp> = ({ params }) => {
         {
             id: 1,
             label: 'Patients',
-            path: '/dashboard/patients'
+            path: '/dashboard/patients',
+            color:"#276DF7",
+            showColor:true
         },
         {
             id: 2,
-            label: 'View Patient',
-            path: `/dashboard/patients/${params.patientId}`
+            label: '/View Patient',
+            path: `/dashboard/patients/${params.patientId}`,
+            color:"#276DF7",
+            showColor:true
         },
         {
             id: 3,
-            label: 'Assign Package to Patient',
-            path: `/dashboard/patients/assign/${params.patientId}`
+            label: '/Assign Package to Patient',
+            path: `/dashboard/patients/assign/${params.patientId}`,
+            color:"#276DF7",
+            showColor:false
         }
     ]
 

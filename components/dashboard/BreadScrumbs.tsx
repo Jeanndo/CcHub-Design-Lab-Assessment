@@ -12,8 +12,12 @@ const BreadScrumbs:FC<BreadScrumbsProps> = ({pathArray}) => {
             <ul className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                 {pathArray?.map((item)=>(
                     <li className="inline-flex items-center" key={item.id}>
-                    <Link href={item.path} className="inline-flex items-center font-medium text-[#2A2A2A] hover:text-[#1F5AF4]">
-                        /{item.label}
+                    <Link href={item.path}
+                        style={{
+                            color:item.showColor?item.color:"black"
+                        }}
+                        className={`inline-flex items-center ${item.label==="/View Patient"?"text-2xl":""} font-medium text-[#2A2A2A] hover:text-[#1F5AF4]`}>
+                        {item.label}
                     </Link>
                 </li>
                 ))

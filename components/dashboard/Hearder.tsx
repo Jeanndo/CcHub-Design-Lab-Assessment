@@ -13,7 +13,7 @@ const Header = () => {
         setIsOpen(false)
     }
     return (
-        <nav className="border-b border-[#cfcfcf9d]  flex justify-between items-center w-full bg-white  h-[75px] px-4 md:px-32">
+        <nav className="sticky top-0 z-50 border-b border-[#cfcfcf9d]  flex justify-between items-center w-full bg-white  h-[75px] px-4 md:px-32">
             <div><Image src="/assets/images/NIMR-logo.svg" alt="nimr logo" width={50} height={50} /></div>
 
             {/* Hamburger icon for mobile */}

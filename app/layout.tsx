@@ -1,19 +1,7 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import 'react-toastify/dist/ReactToastify.css';
 import "./globals.css";
 import { ToastContainer} from 'react-toastify';
-
-const geistSans = localFont({
-  src: "./fonts/Gilroy-Light.woff",
-  variable: "--font-gilroy-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/Gilroy-Light.woff",
-  variable: "--font-gilroy",
-  weight: "100 900",
-});
 
 export const metadata: Metadata = {
   title: "Nimcure",
@@ -27,9 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body>
         <ToastContainer />
         {children}
       </body>

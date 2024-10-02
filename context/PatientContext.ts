@@ -31,6 +31,8 @@ interface PatientContextType {
     handleCleanQrCode:()=>void;
     isScanning:boolean;
     setIsScanning:(value:boolean)=>void;
+    editPatientInfo:boolean;
+    setEditPatientInfo:(value:boolean)=>void;
 
 }
 

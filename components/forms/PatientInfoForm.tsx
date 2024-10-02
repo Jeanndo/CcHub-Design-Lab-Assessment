@@ -8,11 +8,12 @@ import CustomSelectField from '../customInput/CustomSelectField'
 import { RiEdit2Fill } from 'react-icons/ri'
 import { usePatient } from '@/hooks/usePatient'
 import { useResponsive } from '@/hooks/useResponsive'
+import { toast } from 'react-toastify'
 
 const PatientInfoForm: FC = () => {
 
     const {smallDevice} = useResponsive()
-    const { patientId, getPatient } = usePatient()
+    const { patientId, getPatient,setEditPatientInfo,editPatientInfo} = usePatient()
     const [patientInfo, setPatientInfo] = useState<Patient | undefined>()
 
     const defaultPatient: PatientInfoFormValues = {
@@ -28,6 +29,8 @@ const PatientInfoForm: FC = () => {
 
         console.log(values)
         console.log(actions)
+        toast.success("Updated successfully")
+        setEditPatientInfo(false)
     }
 
     useEffect(() => {
@@ -46,7 +49,7 @@ const PatientInfoForm: FC = () => {
                     <p className="text-[#262626] text-opacity-50 hidden md:block">Personal information about Patient</p>
                 </div>
                 <div>
-                    <button className="border border-[#1F5AF4] bg-opacity-40 py-1 md:py-2 px-2 md:px-6 text-[#1F5AF4] flex justify-center items-center gap-1"><RiEdit2Fill /><span>{smallDevice?"Edit":"Edit Patient information"}</span></button>
+                    <button onClick={()=>setEditPatientInfo(true)} className="border border-[#1F5AF4] bg-opacity-40 py-1 md:py-2 px-2 md:px-6 text-[#1F5AF4] flex justify-center items-center gap-1"><RiEdit2Fill /><span>{smallDevice?"Edit":"Edit Patient information"}</span></button>
                 </div>
 
             </div>
@@ -65,7 +68,7 @@ const PatientInfoForm: FC = () => {
                                 type="text"
                                 placeholder="Hospital ID"
                                 showlabel={true}
-                                disabled
+                                disabled={!editPatientInfo}
 
                             />
                         </div>
@@ -77,7 +80,7 @@ const PatientInfoForm: FC = () => {
                                     type="text"
                                     placeholder="FirstName"
                                     showlabel={true}
-                                    disabled
+                                    disabled={!editPatientInfo}
                                 />
                             </div>
                             <div>
@@ -87,7 +90,7 @@ const PatientInfoForm: FC = () => {
                                     type="text"
                                     placeholder="LastName"
                                     showlabel={true}
-                                    disabled
+                                    disabled={!editPatientInfo}
                                 />
                             </div>
                             <div>
@@ -95,7 +98,7 @@ const PatientInfoForm: FC = () => {
                                     label='Gender'
                                     name="gender"
                                     showlabel={true}
-                                    disabled
+                                    disabled={!editPatientInfo}
                                 >
                                     <option value="">Gender</option>
                                     <option value="Male">Male</option>
@@ -109,7 +112,7 @@ const PatientInfoForm: FC = () => {
                                     type="text"
                                     placeholder="Phone"
                                     showlabel={true}
-                                    disabled
+                                    disabled={!editPatientInfo}
                                 />
                             </div>
                         </div>
@@ -120,11 +123,11 @@ const PatientInfoForm: FC = () => {
                                 type="email"
                                 placeholder="Email Address"
                                 showlabel={true}
-                                disabled
+                                disabled={!editPatientInfo}
                             />
                         </div>
                         <div className="w-full flex justify-end">
-                            <button disabled className=" bg-[#1F5AF4] bg-opacity-40 py-4 px-8 text-white">Save Changes</button>
+                            <button type='submit' disabled={!editPatientInfo} className={`bg-[#1F5AF4] ${!editPatientInfo?"bg-opacity-40":""} py-4 px-8 text-white`}>Save Changes</button>
                         </div>
                     </Form>
                 )}
